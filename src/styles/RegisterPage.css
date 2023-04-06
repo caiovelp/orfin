@@ -34,14 +34,6 @@
     display: block;
     margin-bottom: 0.5rem;
   }
-  
-  .register-form input#username {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: none;
-    margin-bottom: 1rem;
-    margin-left: 0.5rem;
-  }
 
   .register-form input#password {
     padding: 0.5rem;

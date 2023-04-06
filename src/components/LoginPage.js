@@ -1,60 +1,45 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
-import {db} from '../firebase';
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {auth} from '../firebase';
+import {signInWithEmailAndPassword } from "firebase/auth";
 
 function LoginPage() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
-  function handleClick() {
+  function goToRegister() {
     navigate('/register');
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    
-    try {
-      const usersRef = collection(db, "users");
-      const q = query(usersRef, where("username", "==", username));
-      const userSnapshot = await getDocs(q);
-      if (userSnapshot.empty) {
-        alert('User not found');
-        return;
-      }
-
-      const userDoc = userSnapshot.docs[0];
-      const userData = userDoc.data();
-
-      if(userData.password !== password) {
-        alert('Invalid password');
-        return;
-      }
-
-      console.log('User logged in: ', userDoc.id);
-      navigate('/homePage')
-    } catch (error) {
+  function login() {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      navigate('/homePage');
+    })
+    .catch((error) => {
       alert(error);
-    }
+    })
   }
 
   return (
     <div className='login-container'>
-        <form className='login-form'>
+        <div className='login-form'>
         <label>
-            Username:
-            <input type="text" id='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+            E-mail:
+            <input type="email" id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
             Password:
             <input type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
-        <button onClick={handleLogin} type="submit" id='login'>Log In</button>
-        <button onClick={handleClick} type="submit" id='register'>Register</button>
-        </form>
+        <button onClick={login} id='login'>Log In</button>
+        <button onClick={goToRegister} type="submit" id='register'>Register</button>
+        </div>
     </div>
   );
 }

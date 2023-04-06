@@ -1,6 +1,7 @@
 .container {
   height: 100vh;
   background-color: #127780;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -18,20 +19,18 @@
 }
 
 .content {
-  flex: 1;
   padding: 20px;
   background-color: #15eda3;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-container {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.content div#card-container {
+  margin: 0 8px;
   width: 500px;
   height: 250px;
   background-color: white;
@@ -39,37 +38,142 @@
   border: 2px solid #18a1ad;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
 }
 
-.card-header {
-  position: absolute;
-  left: 20%;
-  justify-content: center;
+.content div#card-container .wallet-info {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content div#card-container .wallet-info div#wallet-data-row {
+  width: auto;
+  display: flex;
+  flex-direction:row;
   align-items: center;
 }
 
-.card-header i {
+.content div#card-container div#card-icon {
   font-size: 40px;
 }
 
-.card-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.content div#card-container .card-info-credit {
   width: auto;
   height: 0.1rem;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  border: 2px solid #15eda3;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  margin-left: 50px;
+}
+
+.content div#card-container .card-info-balance {
+  width: auto;
+  height: 0.1rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  align-items: center;
   border: 2px solid #18a1ad;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
+  display: flex;
+  margin-left: 50px;
 }
+
+.content div#card-container .card-info-expenses {
+  width: auto;
+  height: 0.1rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  border: 2px solid #dc143c;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  margin-left: 50px;
+}
+
+.content div#card-container .card-info-credit div#credit-value {
+  font-weight: bold;
+}
+
+.content div#card-container .card-info-balance div#balance-value {
+  font-weight: bold;
+}
+
+.content div#card-container .card-info-expenses div#expenses-value {
+  font-weight: bold;
+}
+
+.content div#card-container .wallet-info div#wallet-info-row {
+  width: auto;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+.card-text {
+  width: auto;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.card-text #credit {
+  margin-left: 115px;
+}
+
+.card-text #balance {
+  margin-left: 100px;
+}
+
+.card-text #expenses {
+  margin-left: 87px;
+}
+
+.content div#info-container{
+  margin: 16px;
+  width: auto;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #18a1ad;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.content div#bottom-menu{
+  font-size: 50px;
+}
+
+.content div#bottom-menu:hover{
+  cursor: pointer;
+  color: #0c4d53;
+}
+
+
+/* .bottom-menu button {
+  font-size: 50px;
+  background-color: #15eda3;
+  border: 0px;
+}
+
+.bottom-menu button:hover {
+  font-size: 50px;
+  background-color: #15eda3;
+  border: 0px;
+  cursor: pointer;
+  color: #0c4d53;
+} */
   
