@@ -48,14 +48,45 @@
   flex-direction: column;
 }
 
+.content div#card-container .wallet-info h1 {
+  font-size: x-large;
+  position: relative;
+  align-self: center;
+  bottom: 60px;
+}
+
+.card-icons {
+  position: relative;
+  bottom: 40px;
+  width: auto;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  font-size: 40px;
+}
+
+.card-icons #credit-icon {
+  margin-left: 115px;
+}
+
+.card-icons #balance-icon {
+  margin-left: 104px;
+}
+
+.card-icons #expenses-icon {
+  margin-left: 107px;
+}
+
 .content div#card-container .wallet-info div#wallet-data-row {
+  position: relative;
+  bottom: 20px;
   width: auto;
   display: flex;
   flex-direction:row;
   align-items: center;
 }
 
-.content div#card-container div#card-icon {
+.content div#card-container div#card-wallet-icon {
   font-size: 40px;
 }
 

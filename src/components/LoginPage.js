@@ -31,11 +31,11 @@ function LoginPage() {
         <div className='login-form'>
         <label>
             E-mail:
-            <input type="email" id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="email" id='email' placeholder='youremail@example.com' value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
             Password:
-            <input type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" id='password' placeholder='Secret pass' value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <button onClick={login} id='login'>Log In</button>
         <button onClick={goToRegister} type="submit" id='register'>Register</button>
