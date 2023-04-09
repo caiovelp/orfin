@@ -1,0 +1,75 @@
+.add-expense-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #0fc083;
+}
+
+.add-expense-container #arrowButton {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #18a1ad;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 5rem;
+  }
+
+.add-expense-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #18a1ad;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    justify-content: center;
+    align-items: center;
+}
+
+.data-row {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.font-awesone-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+.font-awesone-icon2 {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.font-awesone-icon3 {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-right: 0.6rem;
+}
+
+.add-expense-form label {
+    font-size: 1.2rem;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.add-expense-form input {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: none;
+}
+
+.add-button {
+    font-size: 50px;
+}
+
+.add-button:hover{
+    cursor: pointer;
+    color: #0c4d53;
+  }
