@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../styles/RegisterPage.css';
 import {auth} from '../firebase';
 import {createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -17,12 +19,19 @@ function RegisterPage() {
     .then((userCredential) => {
       //Signed in
       const user = userCredential.user;
+      createUserCollection(user);
       alert('User is now registered');
       navigate(-1);
     })
     .catch((error) => {
       alert(error);
     })
+  }
+
+  async function createUserCollection(user) {
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email
+    });
   }
 
   return (

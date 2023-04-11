@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCashRegister, faHandHoldingDollar, faMoneyBill1Wave, faMoneyBillTransfer, faMoneyBillTrendUp, faMoneyBills, faPlusCircle, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBillTransfer, faMoneyBillTrendUp, faMoneyBills, faPlusCircle, faWallet } from '@fortawesome/free-solid-svg-icons';
 
 
 function HomePage() {

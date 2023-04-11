@@ -1,19 +1,20 @@
 import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {faArrowLeft, faCalendarDays, faCommentDollar, faCreditCard, faDollar, faFileText, faListOl, faPlusCircle, faTag } from "@fortawesome/free-solid-svg-icons";
 import '../styles/AddExpensePage.css';
+import { auth } from "../firebase";
 
 //https://reactdatepicker.com/ react datepicker doc
 
 function AddExpensePage() {
     const [expenseDate, setExpenseDate] = useState(new Date());
     const [tag, setTag] = useState('');
-    const [parcel, setParcel] = useState(0);
+    const [totalParcels, setParcel] = useState(0);
     const [description, setDescription] = useState('');
     const [chargeDesc, setChargDesc] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -21,16 +22,45 @@ function AddExpensePage() {
 
     const navigate = useNavigate();
 
+    function getUserId() {
+        const user = auth.currentUser;
+
+        return user.uid;
+    }
+
     async function addExpense() {
-        await addDoc(collection(db, "expenses"), {
-            date: expenseDate,
-            tag: tag,
-            parcel: parcel,
-            description: description,
-            chargeDesc: chargeDesc,
-            card: paymentMethod,
-            value: value
-        });
+        const uid = getUserId();
+        const userRef = doc(db, "users", uid);
+        const expenseRef = collection(userRef, "expenses");
+
+        if(totalParcels > 1) {
+            for (let index = 0; index < totalParcels; index++) {
+                await addDoc(expenseRef, {
+                    originalDate: expenseDate,
+                    realDate: expenseDate.setMonth(expenseDate.getMonth()+1),
+                    tag: tag,
+                    totalParcels : totalParcels,
+                    currentParcel: index+1,
+                    description: description,
+                    chargeDesc: chargeDesc,
+                    card: paymentMethod,
+                    value: value
+                });
+            }
+        }
+        else {
+            await addDoc(expenseRef, {
+                originalDate: expenseDate,
+                realDate: expenseDate,
+                tag: tag,
+                totalParcels : totalParcels,
+                currentParcel: totalParcels,
+                description: description,
+                chargeDesc: chargeDesc,
+                card: paymentMethod,
+                value: value
+            }, "teste");
+        }
     }
 
     return (
@@ -49,7 +79,7 @@ function AddExpensePage() {
                 </div>
                 <div className="data-row">
                     <FontAwesomeIcon className="font-awesone-icon" icon={faListOl} />
-                    <input type="text" placeholder="Number of parcels" id="parcel" value={parcel} onChange={(e) => setParcel(e.target.value)}/>
+                    <input type="text" placeholder="Number of parcels" id="parcel" value={totalParcels} onChange={(e) => setParcel(e.target.value)}/>
                 </div>
                 <div className="data-row">
                     <FontAwesomeIcon className="font-awesone-icon2" icon={faFileText} />
